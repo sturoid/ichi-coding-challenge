@@ -1,0 +1,32 @@
+{
+  "fixture": "tests/fixtures/generalization",
+  "findings": {
+    "H1": "Pass",
+    "WA1": "Could Not Evaluate",
+    "WA2": "Not Applicable",
+    "WB1": "Not Applicable",
+    "WC1": "Not Applicable",
+    "WC2": "Not Applicable",
+    "WD1": "Pass",
+    "WD2": "Could Not Evaluate",
+    "WE1": "Not Applicable",
+    "WF1": "Fail",
+    "WG1": "Not Applicable",
+    "WM1": "Fail",
+    "WM2": "Fail",
+    "WJ1": "Could Not Evaluate",
+    "WK1": "Pass",
+    "WL1": "Not Applicable",
+    "WN1": "Not Applicable",
+    "R104": "Could Not Evaluate",
+    "R102": "Could Not Evaluate",
+    "R201": "Pass",
+    "R202": "Could Not Evaluate",
+    "R203": "Fail",
+    "R205": "Fail",
+    "R301": "Could Not Evaluate",
+    "R302": "Pass",
+    "R304": "Could Not Evaluate"
+  },
+  "_changes": "WB1 and WE1 changed from Could Not Evaluate to Not Applicable after review (Opus): an undesignated window gets Not Applicable, and the doubt about whether DEN / NURSERY is a sleeping room is carried by the room finding (R102, R202), which stays Could Not Evaluate. Same rule as window 4 / Office 102 in the README fixtures. Sonnet's original expectation is kept in EXPECTED.md."
+}

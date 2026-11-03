@@ -1,0 +1,1422 @@
+[
+  {
+    "id": "H1",
+    "check": "height",
+    "subject": "Building",
+    "verdict": "Fail",
+    "code_ref": "IBC 2018 Table 504.3, row 'R' / sub-row S13D / column Type V-B",
+    "reason": "The building is 41' - 6\" (41.5 ft); Table 504.3 allows 40 ft, so it's over by 1'-6\" (18 in).",
+    "evidence": [
+      {
+        "label": "Occupancy",
+        "raw": "R-3",
+        "parsed": "row 'R'",
+        "source": "code analysis, 'OCCUPANCY GROUP'"
+      },
+      {
+        "label": "Construction type",
+        "raw": "V-B",
+        "parsed": "Type V-B",
+        "source": "code analysis, 'CONSTRUCTION TYPE'"
+      },
+      {
+        "label": "Sprinklers",
+        "raw": "YES - AUTOMATIC SPRINKLER SYSTEM THROUGHOUT PER NFPA 13D (IBC 903.3.1.3)",
+        "parsed": "sub-row S13D",
+        "source": "code analysis, 'FIRE SPRINKLE RS'"
+      },
+      {
+        "label": "Building height",
+        "raw": "41' - 6\" (TO AVG. HT. OF HIGHEST ROOF SURFACE)",
+        "parsed": "41.5 ft",
+        "source": "code analysis, 'BUILDING HEIGHT ABOVE GRADE PLAN E'"
+      },
+      {
+        "label": "Table 504.3 cell",
+        "raw": "40",
+        "parsed": "40 ft",
+        "source": "table-504.3.html, row 'R' / sub-row S13D / column Type V-B"
+      },
+      {
+        "label": "Architect's stated allowable",
+        "raw": "60' - 0\" PER TABLE 504.3",
+        "parsed": "60 ft",
+        "source": "code analysis, 'ALLOWABLE HEIGHT'"
+      }
+    ],
+    "derivation": [
+      "Occupancy R-3 -> 'R-3' falls under row 'R'.",
+      "Construction V-B -> column TYPE V / B.",
+      "Sprinklers: NFPA 13D and Section 903.3.1.3 -> S13D per the Table 504.3 legend.",
+      "Lookup R > S13D > Type V-B = 40.",
+      "41.5 ft > 40 ft."
+    ],
+    "assumptions": [
+      "The building height is the architect's stated value; the grade-plane calculation it depends on (civil sheet) wasn't provided."
+    ],
+    "reason_code": null,
+    "tag": null,
+    "margin": "1'-6\" (18 in) over",
+    "settles_with": null,
+    "next_step": null,
+    "draft_comment": "Building height of 41' - 6\" exceeds the 40 ft maximum in IBC Table 504.3 for Group R-3 (R row), S13D sprinkler sub-row, Type V-B construction. Reduce the building height, or revise the construction type or sprinkler system and update the code analysis. For reference, Table 504.3 allows 60 ft with an NFPA 13 system (IBC 903.3.1.1) or an NFPA 13R system (IBC 903.3.1.2) in this row and column. Correct the allowable height on the code analysis: it states 60' - 0\"; Table 504.3 gives 40 ft.",
+    "room": null,
+    "windows": [],
+    "flags": [
+      "The code analysis says the allowable height is 60' - 0\" per Table 504.3, but the table gives 40 ft for this building (row 'R' / sub-row S13D / column Type V-B). 60 ft is the S and S13R value in the same column, not S13D."
+    ],
+    "verdict_source": "rule",
+    "fingerprint": null
+  },
+  {
+    "id": "R101",
+    "check": "egress-room",
+    "subject": "Room 101",
+    "verdict": "Could Not Evaluate",
+    "code_ref": "IBC 1030.1, 1030.2, 1030.2.1, 1030.3",
+    "reason": "No designated window is shown to comply: window 1 needs net clear data; window 3 needs net clear data.",
+    "evidence": [
+      {
+        "label": "Windows in room",
+        "raw": "1 (L.H. CASM'T, EGRESS), 2 (FIXED, not designated), 3 (R.H. CASM'T, EGRESS)",
+        "parsed": "BEDROOM 101",
+        "source": "window schedule, LOCATION"
+      }
+    ],
+    "derivation": [
+      "Window 1: Could Not Evaluate",
+      "Window 3: Could Not Evaluate"
+    ],
+    "assumptions": [],
+    "reason_code": "NET_CLEAR_UNKNOWN",
+    "tag": "open",
+    "margin": "area: needs 57% of nominal as net clear",
+    "settles_with": "manufacturer net clear opening (width, height) for window type A, or a net-clear column on the schedule",
+    "next_step": "Provide manufacturer net clear opening (width, height) for window type A, or a net-clear column on the schedule.",
+    "draft_comment": "Windows 1 and 3 (BEDROOM 101): provide manufacturer data for window type A showing the net clear opening width and height and the height of the bottom of the clear opening above the finished floor, to verify IBC 1030.2, 1030.2.1 and 1030.3.",
+    "room": "BEDROOM 101",
+    "windows": [
+      "1",
+      "2",
+      "3"
+    ],
+    "flags": [],
+    "verdict_source": "rule",
+    "fingerprint": "room|101|1|101|30.0x48.0|casement|A,2|101|36.0x48.0|fixed|B,3|101|30.0x48.0|casement|A"
+  },
+  {
+    "id": "R102",
+    "check": "egress-room",
+    "subject": "Room 102",
+    "verdict": "Could Not Evaluate",
+    "code_ref": "IBC 1030.1",
+    "reason": "'OFFICE' isn't named as a bedroom, but 'OFFICE' rooms are sometimes slept in. If it's a sleeping room it needs an EERO; designated: none; possible: window 4 (L.H. CASM'T) could comply in the best case.",
+    "evidence": [
+      {
+        "label": "Windows in room",
+        "raw": "4 (L.H. CASM'T, not designated)",
+        "parsed": "OFFICE 102",
+        "source": "window schedule, LOCATION"
+      }
+    ],
+    "derivation": [],
+    "assumptions": [],
+    "reason_code": "AMBIGUOUS_SLEEPING_ROOM",
+    "tag": "open",
+    "margin": null,
+    "settles_with": "the floor plan / the architect's intended use of the room",
+    "next_step": "Decide whether OFFICE 102 is a sleeping room.",
+    "draft_comment": "Clarify the use of OFFICE 102. If it is a sleeping room, designate a compliant emergency escape and rescue opening per IBC 1030.",
+    "room": "OFFICE 102",
+    "windows": [
+      "4"
+    ],
+    "flags": [],
+    "verdict_source": "rule",
+    "fingerprint": "room|102|4|102|36.0x60.0|casement|C"
+  },
+  {
+    "id": "R107",
+    "check": "egress-room",
+    "subject": "Room 107",
+    "verdict": "Could Not Evaluate",
+    "code_ref": "IBC 1030.1, 1030.2, 1030.2.1, 1030.3",
+    "reason": "No designated window is shown to comply: window 7 is at the limit.",
+    "evidence": [
+      {
+        "label": "Windows in room",
+        "raw": "7 (L.H. CASM'T, EGRESS)",
+        "parsed": "ADU BEDROOM 107",
+        "source": "window schedule, LOCATION"
+      }
+    ],
+    "derivation": [
+      "Window 7: Could Not Evaluate (at the limit)"
+    ],
+    "assumptions": [],
+    "reason_code": "SILL_AT_LIMIT",
+    "tag": "boundary",
+    "margin": "sill: 0 in to spare; area: needs 76% of nominal as net clear",
+    "settles_with": "manufacturer data or a detail for type F: net clear width/height and the sill-to-clear-opening offset",
+    "next_step": "Provide manufacturer data or a detail for type F: net clear width/height and the sill-to-clear-opening offset.",
+    "draft_comment": "Window 7 (ADU BEDROOM 107): provide manufacturer data for window type F showing the net clear opening width and height and the height of the bottom of the clear opening above the finished floor, to verify IBC 1030.2, 1030.2.1 and 1030.3.",
+    "room": "ADU BEDROOM 107",
+    "windows": [
+      "7"
+    ],
+    "flags": [
+      "Exception 2 to 1030.1: no EERO is needed if the room has an exit door opening directly to a public way, yard or court. Not visible in these documents; verify on the floor plan before issuing."
+    ],
+    "verdict_source": "rule",
+    "fingerprint": "room|107|7|107|30.0x36.0|casement|F"
+  },
+  {
+    "id": "R203",
+    "check": "egress-room",
+    "subject": "Room 203",
+    "verdict": "Fail",
+    "code_ref": "IBC 1030.1, 1030.2, 1030.3",
+    "reason": "Every designated escape window fails (10), so the room has no compliant EERO.",
+    "evidence": [
+      {
+        "label": "Windows in room",
+        "raw": "10 (L.H. CASM'T, EGRESS), 11 (FIXED, not designated)",
+        "parsed": "BEDROOM 203",
+        "source": "window schedule, LOCATION"
+      }
+    ],
+    "derivation": [
+      "Window 10: Fail"
+    ],
+    "assumptions": [],
+    "reason_code": null,
+    "tag": null,
+    "margin": null,
+    "settles_with": null,
+    "next_step": null,
+    "draft_comment": "BEDROOM 203 has no compliant emergency escape and rescue opening: window 10: area 5.00 sf < 5.7 sf even with no frame loss (1030.2); sill 50 in > 44 in max, 6 in over before any frame (1030.3). Provide a compliant opening per IBC 1030.",
+    "room": "BEDROOM 203",
+    "windows": [
+      "10",
+      "11"
+    ],
+    "flags": [
+      "Exception 2 to 1030.1: no EERO is needed if the room has an exit door opening directly to a public way, yard or court. Not visible in these documents; verify on the floor plan before issuing."
+    ],
+    "verdict_source": "rule",
+    "fingerprint": "room|203|10|203|24.0x30.0|casement|H,11|203|36.0x30.0|fixed|I"
+  },
+  {
+    "id": "R205",
+    "check": "egress-room",
+    "subject": "Room 205",
+    "verdict": "Could Not Evaluate",
+    "code_ref": "IBC 1030.1, 1030.2, 1030.2.1, 1030.3",
+    "reason": "No designated window is shown to comply: window 12 is at the limit; window 13 fails.",
+    "evidence": [
+      {
+        "label": "Windows in room",
+        "raw": "12 (S.H., EGRESS), 13 (FIXED, EGRESS)",
+        "parsed": "BEDROOM 205",
+        "source": "window schedule, LOCATION"
+      }
+    ],
+    "derivation": [
+      "Window 12: Could Not Evaluate (at the limit)",
+      "Window 13: Fail"
+    ],
+    "assumptions": [],
+    "reason_code": "HUNG_HEIGHT_AT_LIMIT",
+    "tag": "boundary",
+    "margin": "clear height: 0 in to spare; area: needs 95% of nominal as net clear",
+    "settles_with": "manufacturer data or a detail for type J: net clear width/height and the sill-to-clear-opening offset",
+    "next_step": "Provide manufacturer data or a detail for type J: net clear width/height and the sill-to-clear-opening offset.",
+    "draft_comment": "Window 12 (BEDROOM 205): provide manufacturer data for window type J showing the net clear opening width and height and the height of the bottom of the clear opening above the finished floor, to verify IBC 1030.2, 1030.2.1 and 1030.3.",
+    "room": "BEDROOM 205",
+    "windows": [
+      "12",
+      "13"
+    ],
+    "flags": [
+      "Exception 2 to 1030.1: no EERO is needed if the room has an exit door opening directly to a public way, yard or court. Not visible in these documents; verify on the floor plan before issuing."
+    ],
+    "verdict_source": "rule",
+    "fingerprint": "room|205|12|205|36.0x48.0|single hung|J,13|205|48.0x48.0|fixed|K"
+  },
+  {
+    "id": "R301",
+    "check": "egress-room",
+    "subject": "Room 301",
+    "verdict": "Fail",
+    "code_ref": "IBC 1030.1, 1030.3",
+    "reason": "Every designated escape window fails (20), so the room has no compliant EERO.",
+    "evidence": [
+      {
+        "label": "Windows in room",
+        "raw": "20 (L.H. CASM'T, EGRESS)",
+        "parsed": "BEDROOM 301",
+        "source": "window schedule, LOCATION"
+      }
+    ],
+    "derivation": [
+      "Window 20: Fail"
+    ],
+    "assumptions": [],
+    "reason_code": null,
+    "tag": null,
+    "margin": null,
+    "settles_with": null,
+    "next_step": null,
+    "draft_comment": "BEDROOM 301 has no compliant emergency escape and rescue opening: window 20: sill 60 in > 44 in max, 16 in over before any frame (1030.3). Provide a compliant opening per IBC 1030.",
+    "room": "BEDROOM 301",
+    "windows": [
+      "20"
+    ],
+    "flags": [
+      "Exception 2 to 1030.1: no EERO is needed if the room has an exit door opening directly to a public way, yard or court. Not visible in these documents; verify on the floor plan before issuing."
+    ],
+    "verdict_source": "rule",
+    "fingerprint": "room|301|20|301|30.0x36.0|casement|F"
+  },
+  {
+    "id": "R303",
+    "check": "egress-room",
+    "subject": "Room 303",
+    "verdict": "Could Not Evaluate",
+    "code_ref": "IBC 1030.1",
+    "reason": "Sleeping room with no window marked EGRESS. Possible: window 21 (L.H. CASM'T) could comply in the best case. The code analysis says EEROs are 'PROVIDED AT ALL SLEEPING ROOMS PER IBC 1030. SEE WINDOW SCHEDULE, SHEET A6.1'.",
+    "evidence": [
+      {
+        "label": "Windows in room",
+        "raw": "21 (L.H. CASM'T, not designated)",
+        "parsed": "GUEST BED 303",
+        "source": "window schedule, LOCATION"
+      }
+    ],
+    "derivation": [],
+    "assumptions": [],
+    "reason_code": "NO_EERO_DESIGNATED",
+    "tag": "open",
+    "margin": null,
+    "settles_with": "the architect designating an escape window (and its net clear data)",
+    "next_step": "Ask the architect to designate an escape window (window 21 is a candidate) and give its net clear opening. If none is designated, the room doesn't meet 1030.1.",
+    "draft_comment": "GUEST BED 303: no emergency escape and rescue opening is designated on the window schedule. Designate a compliant opening per IBC 1030 and provide its net clear dimensions.",
+    "room": "GUEST BED 303",
+    "windows": [
+      "21"
+    ],
+    "flags": [],
+    "verdict_source": "rule",
+    "fingerprint": "room|303|21|303|30.0x48.0|casement|A"
+  },
+  {
+    "id": "W1",
+    "check": "egress-window",
+    "subject": "Window 1",
+    "verdict": "Could Not Evaluate",
+    "code_ref": "IBC 1030.2, IBC 1030.2.1, IBC 1030.3",
+    "reason": "Nominal size would comply, but the schedule doesn't give the net clear opening. Area: best case 10.00 sf vs 5.7 sf required, so net clear must be at least 57% of it (50% if it's a grade-floor opening); clear height: best case 48 in vs 24 in minimum (24 in to spare before frame loss); clear width: best case 30 in vs 20 in minimum (10 in to spare before frame loss); sill: 32 in, 12 in under the max before the sill frame is added.",
+    "evidence": [
+      {
+        "label": "Location",
+        "raw": "BEDROOM 101",
+        "parsed": "BEDROOM (room 101, floor 1): sleeping, name contains 'BEDROOM'",
+        "source": "window schedule, symbol 1, LOCATION"
+      },
+      {
+        "label": "Nominal size",
+        "raw": "2' - 6\" x 4' - 0\"",
+        "parsed": "2'-6\" x 4'-0\" = 10 sf",
+        "source": "window schedule, symbol 1, NOMINAL SIZE"
+      },
+      {
+        "label": "Operation",
+        "raw": "L.H. CASM'T",
+        "parsed": "casement",
+        "source": "window schedule, symbol 1, TYPE (operation)"
+      },
+      {
+        "label": "Type mark",
+        "raw": "A",
+        "parsed": "A",
+        "source": "window schedule, symbol 1, TYPE (mark)"
+      },
+      {
+        "label": "Head height",
+        "raw": "6' - 8\"",
+        "parsed": "6'-8\"",
+        "source": "window schedule, symbol 1, HEAD HEIGHT"
+      },
+      {
+        "label": "Egress",
+        "raw": "Y",
+        "parsed": "designated EERO",
+        "source": "window schedule, symbol 1, EGRESS"
+      }
+    ],
+    "derivation": [
+      "Best-case clear opening = nominal x operation factor (casement: width x1, height x1) = 30 x 48 in.",
+      "Area = 30 x 48 / 144 = 10.00 sf.",
+      "Sill = head height 6'-8\" - nominal height 4'-0\" = 32 in above the floor.",
+      "Sill about 44 in above the grade plane (sill 32 in + first floor 12 in above grade plane): within 44 in, so possibly a grade-floor opening (5.0 sf).",
+      "Open: area: best case 10.00 sf vs 5.7 sf required, so net clear must be at least 57% of it (50% if it's a grade-floor opening)",
+      "Open: clear height: best case 48 in vs 24 in minimum (24 in to spare before frame loss)",
+      "Open: clear width: best case 30 in vs 20 in minimum (10 in to spare before frame loss)",
+      "Open: sill: 32 in, 12 in under the max before the sill frame is added"
+    ],
+    "assumptions": [
+      "Best case: no frame or sash loss, so the real clear opening is smaller than this.",
+      "Head height is taken as the top of the unit, the usual schedule convention. If it's measured to the clear opening instead, the real sill is higher; any Pass here relies on this convention.",
+      "First floor: may be a grade-floor opening (5.0 sf). Finished grade at each window isn't given, so Pass needs 5.7 sf; a Fail on area is only called below 5.0 sf."
+    ],
+    "reason_code": "NET_CLEAR_UNKNOWN",
+    "tag": "open",
+    "margin": "area: needs 57% of nominal as net clear",
+    "settles_with": "manufacturer net clear opening (width, height) for window type A, or a net-clear column on the schedule",
+    "next_step": "Provide manufacturer net clear opening (width, height) for window type A, or a net-clear column on the schedule.",
+    "draft_comment": "Window 1 (BEDROOM 101): provide manufacturer data for window type A showing the net clear opening width and height and the height of the bottom of the clear opening above the finished floor, to verify IBC 1030.2, 1030.2.1 and 1030.3.",
+    "room": "BEDROOM 101",
+    "windows": [
+      "1"
+    ],
+    "flags": [],
+    "verdict_source": "rule",
+    "fingerprint": "1|101|30.0x48.0|casement|A"
+  },
+  {
+    "id": "W2",
+    "check": "egress-window",
+    "subject": "Window 2",
+    "verdict": "Not Applicable",
+    "code_ref": "IBC 1030.1",
+    "reason": "Not marked EGRESS, so it isn't the room's escape opening. As an alternative it couldn't serve: fixed unit, does not open, so normal operation gives no clear opening (see the BEDROOM 101 finding).",
+    "evidence": [
+      {
+        "label": "Location",
+        "raw": "BEDROOM 101",
+        "parsed": "BEDROOM (room 101, floor 1): sleeping, name contains 'BEDROOM'",
+        "source": "window schedule, symbol 2, LOCATION"
+      },
+      {
+        "label": "Nominal size",
+        "raw": "3' - 0\" x 4' - 0\"",
+        "parsed": "3'-0\" x 4'-0\" = 12 sf",
+        "source": "window schedule, symbol 2, NOMINAL SIZE"
+      },
+      {
+        "label": "Operation",
+        "raw": "FIXED",
+        "parsed": "fixed",
+        "source": "window schedule, symbol 2, TYPE (operation)"
+      },
+      {
+        "label": "Type mark",
+        "raw": "B",
+        "parsed": "B",
+        "source": "window schedule, symbol 2, TYPE (mark)"
+      },
+      {
+        "label": "Head height",
+        "raw": "6' - 8\"",
+        "parsed": "6'-8\"",
+        "source": "window schedule, symbol 2, HEAD HEIGHT"
+      },
+      {
+        "label": "Egress",
+        "raw": "",
+        "parsed": "not designated",
+        "source": "window schedule, symbol 2, EGRESS"
+      }
+    ],
+    "derivation": [],
+    "assumptions": [],
+    "reason_code": null,
+    "tag": null,
+    "margin": null,
+    "settles_with": null,
+    "next_step": null,
+    "draft_comment": null,
+    "room": "BEDROOM 101",
+    "windows": [
+      "2"
+    ],
+    "flags": [],
+    "verdict_source": "rule",
+    "fingerprint": "2|101|36.0x48.0|fixed|B"
+  },
+  {
+    "id": "W3",
+    "check": "egress-window",
+    "subject": "Window 3",
+    "verdict": "Could Not Evaluate",
+    "code_ref": "IBC 1030.2, IBC 1030.2.1, IBC 1030.3",
+    "reason": "Nominal size would comply, but the schedule doesn't give the net clear opening. Area: best case 10.00 sf vs 5.7 sf required, so net clear must be at least 57% of it (50% if it's a grade-floor opening); clear height: best case 48 in vs 24 in minimum (24 in to spare before frame loss); clear width: best case 30 in vs 20 in minimum (10 in to spare before frame loss); sill: 32 in, 12 in under the max before the sill frame is added.",
+    "evidence": [
+      {
+        "label": "Location",
+        "raw": "BEDROOM 101",
+        "parsed": "BEDROOM (room 101, floor 1): sleeping, name contains 'BEDROOM'",
+        "source": "window schedule, symbol 3, LOCATION"
+      },
+      {
+        "label": "Nominal size",
+        "raw": "2' - 6\" x 4' - 0\"",
+        "parsed": "2'-6\" x 4'-0\" = 10 sf",
+        "source": "window schedule, symbol 3, NOMINAL SIZE"
+      },
+      {
+        "label": "Operation",
+        "raw": "R.H. CASM'T",
+        "parsed": "casement",
+        "source": "window schedule, symbol 3, TYPE (operation)"
+      },
+      {
+        "label": "Type mark",
+        "raw": "A",
+        "parsed": "A",
+        "source": "window schedule, symbol 3, TYPE (mark)"
+      },
+      {
+        "label": "Head height",
+        "raw": "6' - 8\"",
+        "parsed": "6'-8\"",
+        "source": "window schedule, symbol 3, HEAD HEIGHT"
+      },
+      {
+        "label": "Egress",
+        "raw": "Y",
+        "parsed": "designated EERO",
+        "source": "window schedule, symbol 3, EGRESS"
+      }
+    ],
+    "derivation": [
+      "Best-case clear opening = nominal x operation factor (casement: width x1, height x1) = 30 x 48 in.",
+      "Area = 30 x 48 / 144 = 10.00 sf.",
+      "Sill = head height 6'-8\" - nominal height 4'-0\" = 32 in above the floor.",
+      "Sill about 44 in above the grade plane (sill 32 in + first floor 12 in above grade plane): within 44 in, so possibly a grade-floor opening (5.0 sf).",
+      "Open: area: best case 10.00 sf vs 5.7 sf required, so net clear must be at least 57% of it (50% if it's a grade-floor opening)",
+      "Open: clear height: best case 48 in vs 24 in minimum (24 in to spare before frame loss)",
+      "Open: clear width: best case 30 in vs 20 in minimum (10 in to spare before frame loss)",
+      "Open: sill: 32 in, 12 in under the max before the sill frame is added"
+    ],
+    "assumptions": [
+      "Best case: no frame or sash loss, so the real clear opening is smaller than this.",
+      "Head height is taken as the top of the unit, the usual schedule convention. If it's measured to the clear opening instead, the real sill is higher; any Pass here relies on this convention.",
+      "First floor: may be a grade-floor opening (5.0 sf). Finished grade at each window isn't given, so Pass needs 5.7 sf; a Fail on area is only called below 5.0 sf."
+    ],
+    "reason_code": "NET_CLEAR_UNKNOWN",
+    "tag": "open",
+    "margin": "area: needs 57% of nominal as net clear",
+    "settles_with": "manufacturer net clear opening (width, height) for window type A, or a net-clear column on the schedule",
+    "next_step": "Provide manufacturer net clear opening (width, height) for window type A, or a net-clear column on the schedule.",
+    "draft_comment": "Window 3 (BEDROOM 101): provide manufacturer data for window type A showing the net clear opening width and height and the height of the bottom of the clear opening above the finished floor, to verify IBC 1030.2, 1030.2.1 and 1030.3.",
+    "room": "BEDROOM 101",
+    "windows": [
+      "3"
+    ],
+    "flags": [],
+    "verdict_source": "rule",
+    "fingerprint": "3|101|30.0x48.0|casement|A"
+  },
+  {
+    "id": "W4",
+    "check": "egress-window",
+    "subject": "Window 4",
+    "verdict": "Not Applicable",
+    "code_ref": "IBC 1030.1",
+    "reason": "Not marked EGRESS, so it isn't the room's escape opening. As an alternative it could comply in the best case (see the OFFICE 102 finding).",
+    "evidence": [
+      {
+        "label": "Location",
+        "raw": "OFFICE 102",
+        "parsed": "OFFICE (room 102, floor 1): ambiguous, 'OFFICE' rooms are sometimes slept in",
+        "source": "window schedule, symbol 4, LOCATION"
+      },
+      {
+        "label": "Nominal size",
+        "raw": "3' - O\" x 5' - 0\"",
+        "parsed": "3'-0\" x 5'-0\" = 15 sf",
+        "source": "window schedule, symbol 4, NOMINAL SIZE"
+      },
+      {
+        "label": "Operation",
+        "raw": "L.H. CASM'T",
+        "parsed": "casement",
+        "source": "window schedule, symbol 4, TYPE (operation)"
+      },
+      {
+        "label": "Type mark",
+        "raw": "C",
+        "parsed": "C",
+        "source": "window schedule, symbol 4, TYPE (mark)"
+      },
+      {
+        "label": "Head height",
+        "raw": "7' - 0\"",
+        "parsed": "7'-0\"",
+        "source": "window schedule, symbol 4, HEAD HEIGHT"
+      },
+      {
+        "label": "Egress",
+        "raw": "",
+        "parsed": "not designated",
+        "source": "window schedule, symbol 4, EGRESS"
+      }
+    ],
+    "derivation": [],
+    "assumptions": [],
+    "reason_code": null,
+    "tag": null,
+    "margin": null,
+    "settles_with": null,
+    "next_step": null,
+    "draft_comment": null,
+    "room": "OFFICE 102",
+    "windows": [
+      "4"
+    ],
+    "flags": [],
+    "verdict_source": "rule",
+    "fingerprint": "4|102|36.0x60.0|casement|C"
+  },
+  {
+    "id": "W5",
+    "check": "egress-window",
+    "subject": "Window 5",
+    "verdict": "Not Applicable",
+    "code_ref": "IBC 1030.1",
+    "reason": "LIVING isn't a sleeping room (not a sleeping-room name), so 1030 doesn't require an EERO here.",
+    "evidence": [
+      {
+        "label": "Location",
+        "raw": "LIVING 103",
+        "parsed": "LIVING (room 103, floor 1): other, not a sleeping-room name",
+        "source": "window schedule, symbol 5, LOCATION"
+      },
+      {
+        "label": "Nominal size",
+        "raw": "6' - 0\" x 5' - 0\"",
+        "parsed": "6'-0\" x 5'-0\" = 30 sf",
+        "source": "window schedule, symbol 5, NOMINAL SIZE"
+      },
+      {
+        "label": "Operation",
+        "raw": "FIXED",
+        "parsed": "fixed",
+        "source": "window schedule, symbol 5, TYPE (operation)"
+      },
+      {
+        "label": "Type mark",
+        "raw": "D",
+        "parsed": "D",
+        "source": "window schedule, symbol 5, TYPE (mark)"
+      },
+      {
+        "label": "Head height",
+        "raw": "7' - 0\"",
+        "parsed": "7'-0\"",
+        "source": "window schedule, symbol 5, HEAD HEIGHT"
+      },
+      {
+        "label": "Egress",
+        "raw": "",
+        "parsed": "not designated",
+        "source": "window schedule, symbol 5, EGRESS"
+      }
+    ],
+    "derivation": [],
+    "assumptions": [],
+    "reason_code": null,
+    "tag": null,
+    "margin": null,
+    "settles_with": null,
+    "next_step": null,
+    "draft_comment": null,
+    "room": "LIVING 103",
+    "windows": [
+      "5"
+    ],
+    "flags": [],
+    "verdict_source": "rule",
+    "fingerprint": "5|103|72.0x60.0|fixed|D"
+  },
+  {
+    "id": "W6",
+    "check": "egress-window",
+    "subject": "Window 6",
+    "verdict": "Not Applicable",
+    "code_ref": "IBC 1030.1",
+    "reason": "KITCHEN isn't a sleeping room (not a sleeping-room name), so 1030 doesn't require an EERO here.",
+    "evidence": [
+      {
+        "label": "Location",
+        "raw": "KITCHEN 104",
+        "parsed": "KITCHEN (room 104, floor 1): other, not a sleeping-room name",
+        "source": "window schedule, symbol 6, LOCATION"
+      },
+      {
+        "label": "Nominal size",
+        "raw": "3' - 0\" x 3' - 0\"",
+        "parsed": "3'-0\" x 3'-0\" = 9 sf",
+        "source": "window schedule, symbol 6, NOMINAL SIZE"
+      },
+      {
+        "label": "Operation",
+        "raw": "AWNING",
+        "parsed": "awning",
+        "source": "window schedule, symbol 6, TYPE (operation)"
+      },
+      {
+        "label": "Type mark",
+        "raw": "E",
+        "parsed": "E",
+        "source": "window schedule, symbol 6, TYPE (mark)"
+      },
+      {
+        "label": "Head height",
+        "raw": "7' - 0\"",
+        "parsed": "7'-0\"",
+        "source": "window schedule, symbol 6, HEAD HEIGHT"
+      },
+      {
+        "label": "Egress",
+        "raw": "",
+        "parsed": "not designated",
+        "source": "window schedule, symbol 6, EGRESS"
+      }
+    ],
+    "derivation": [],
+    "assumptions": [],
+    "reason_code": null,
+    "tag": null,
+    "margin": null,
+    "settles_with": null,
+    "next_step": null,
+    "draft_comment": null,
+    "room": "KITCHEN 104",
+    "windows": [
+      "6"
+    ],
+    "flags": [],
+    "verdict_source": "rule",
+    "fingerprint": "6|104|36.0x36.0|awning|E"
+  },
+  {
+    "id": "W7",
+    "check": "egress-window",
+    "subject": "Window 7",
+    "verdict": "Could Not Evaluate",
+    "code_ref": "IBC 1030.2, IBC 1030.2.1, IBC 1030.3",
+    "reason": "At the limit even in the best case: sill: best case exactly 44 in, so any frame loss puts the opening above 44 in (1030.3). Also open: area: best case 7.50 sf vs 5.7 sf required, so net clear must be at least 76% of it; clear height: best case 36 in vs 24 in minimum (12 in to spare before frame loss); clear width: best case 30 in vs 20 in minimum (10 in to spare before frame loss).",
+    "evidence": [
+      {
+        "label": "Location",
+        "raw": "ADU BEDROOM 107",
+        "parsed": "ADU BEDROOM (room 107, floor 1): sleeping, name contains 'BEDROOM'",
+        "source": "window schedule, symbol 7, LOCATION"
+      },
+      {
+        "label": "Nominal size",
+        "raw": "2'-6\" x 3' - 0\"",
+        "parsed": "2'-6\" x 3'-0\" = 7.5 sf",
+        "source": "window schedule, symbol 7, NOMINAL SIZE"
+      },
+      {
+        "label": "Operation",
+        "raw": "L.H. CASM'T",
+        "parsed": "casement",
+        "source": "window schedule, symbol 7, TYPE (operation)"
+      },
+      {
+        "label": "Type mark",
+        "raw": "F",
+        "parsed": "F",
+        "source": "window schedule, symbol 7, TYPE (mark)"
+      },
+      {
+        "label": "Head height",
+        "raw": "6' - 8\"",
+        "parsed": "6'-8\"",
+        "source": "window schedule, symbol 7, HEAD HEIGHT"
+      },
+      {
+        "label": "Egress",
+        "raw": "Y",
+        "parsed": "designated EERO",
+        "source": "window schedule, symbol 7, EGRESS"
+      }
+    ],
+    "derivation": [
+      "Best-case clear opening = nominal x operation factor (casement: width x1, height x1) = 30 x 36 in.",
+      "Area = 30 x 36 / 144 = 7.50 sf.",
+      "Sill = head height 6'-8\" - nominal height 3'-0\" = 44 in above the floor.",
+      "Sill about 56 in above the grade plane (sill 44 in + first floor 12 in above grade plane): more than 44 in, so probably not a grade-floor opening; 5.7 sf applies unless grade at this wall is higher.",
+      "At the limit: sill: best case exactly 44 in, so any frame loss puts the opening above 44 in (1030.3)",
+      "Open: area: best case 7.50 sf vs 5.7 sf required, so net clear must be at least 76% of it",
+      "Open: clear height: best case 36 in vs 24 in minimum (12 in to spare before frame loss)",
+      "Open: clear width: best case 30 in vs 20 in minimum (10 in to spare before frame loss)"
+    ],
+    "assumptions": [
+      "Best case: no frame or sash loss, so the real clear opening is smaller than this.",
+      "Head height is taken as the top of the unit, the usual schedule convention. If it's measured to the clear opening instead, the real sill is higher; any Pass here relies on this convention.",
+      "First floor: may be a grade-floor opening (5.0 sf). Finished grade at each window isn't given, so Pass needs 5.7 sf; a Fail on area is only called below 5.0 sf."
+    ],
+    "reason_code": "SILL_AT_LIMIT",
+    "tag": "boundary",
+    "margin": "sill: 0 in to spare; area: needs 76% of nominal as net clear",
+    "settles_with": "manufacturer data or a detail for type F: net clear width/height and the sill-to-clear-opening offset",
+    "next_step": "Provide manufacturer data or a detail for type F: net clear width/height and the sill-to-clear-opening offset.",
+    "draft_comment": "Window 7 (ADU BEDROOM 107): provide manufacturer data for window type F showing the net clear opening width and height and the height of the bottom of the clear opening above the finished floor, to verify IBC 1030.2, 1030.2.1 and 1030.3.",
+    "room": "ADU BEDROOM 107",
+    "windows": [
+      "7"
+    ],
+    "flags": [],
+    "verdict_source": "rule",
+    "fingerprint": "7|107|30.0x36.0|casement|F"
+  },
+  {
+    "id": "W8",
+    "check": "egress-window",
+    "subject": "Window 8",
+    "verdict": "Not Applicable",
+    "code_ref": "IBC 1030.1",
+    "reason": "LAUNDRY isn't a sleeping room (not a sleeping-room name), so 1030 doesn't require an EERO here.",
+    "evidence": [
+      {
+        "label": "Location",
+        "raw": "LAUNDRY 108",
+        "parsed": "LAUNDRY (room 108, floor 1): other, not a sleeping-room name",
+        "source": "window schedule, symbol 8, LOCATION"
+      },
+      {
+        "label": "Nominal size",
+        "raw": "2' - 0\" x 3' - 0\"",
+        "parsed": "2'-0\" x 3'-0\" = 6 sf",
+        "source": "window schedule, symbol 8, NOMINAL SIZE"
+      },
+      {
+        "label": "Operation",
+        "raw": "SLIDER",
+        "parsed": "slider",
+        "source": "window schedule, symbol 8, TYPE (operation)"
+      },
+      {
+        "label": "Type mark",
+        "raw": "G",
+        "parsed": "G",
+        "source": "window schedule, symbol 8, TYPE (mark)"
+      },
+      {
+        "label": "Head height",
+        "raw": "6' - 8\"",
+        "parsed": "6'-8\"",
+        "source": "window schedule, symbol 8, HEAD HEIGHT"
+      },
+      {
+        "label": "Egress",
+        "raw": "",
+        "parsed": "not designated",
+        "source": "window schedule, symbol 8, EGRESS"
+      }
+    ],
+    "derivation": [],
+    "assumptions": [],
+    "reason_code": null,
+    "tag": null,
+    "margin": null,
+    "settles_with": null,
+    "next_step": null,
+    "draft_comment": null,
+    "room": "LAUNDRY 108",
+    "windows": [
+      "8"
+    ],
+    "flags": [],
+    "verdict_source": "rule",
+    "fingerprint": "8|108|24.0x36.0|slider|G"
+  },
+  {
+    "id": "W10",
+    "check": "egress-window",
+    "subject": "Window 10",
+    "verdict": "Fail",
+    "code_ref": "IBC 1030.2, 1030.3",
+    "reason": "Area 5.00 sf < 5.7 sf even with no frame loss (1030.2); sill 50 in > 44 in max, 6 in over before any frame (1030.3).",
+    "evidence": [
+      {
+        "label": "Location",
+        "raw": "BEDROOM 203",
+        "parsed": "BEDROOM (room 203, floor 2): sleeping, name contains 'BEDROOM'",
+        "source": "window schedule, symbol 10, LOCATION"
+      },
+      {
+        "label": "Nominal size",
+        "raw": "2' - 0\" x 2' - 6\"",
+        "parsed": "2'-0\" x 2'-6\" = 5 sf",
+        "source": "window schedule, symbol 10, NOMINAL SIZE"
+      },
+      {
+        "label": "Operation",
+        "raw": "L.H. CASM'T",
+        "parsed": "casement",
+        "source": "window schedule, symbol 10, TYPE (operation)"
+      },
+      {
+        "label": "Type mark",
+        "raw": "H",
+        "parsed": "H",
+        "source": "window schedule, symbol 10, TYPE (mark)"
+      },
+      {
+        "label": "Head height",
+        "raw": "6' - 8\"",
+        "parsed": "6'-8\"",
+        "source": "window schedule, symbol 10, HEAD HEIGHT"
+      },
+      {
+        "label": "Egress",
+        "raw": "Y",
+        "parsed": "designated EERO",
+        "source": "window schedule, symbol 10, EGRESS"
+      }
+    ],
+    "derivation": [
+      "Best-case clear opening = nominal x operation factor (casement: width x1, height x1) = 24 x 30 in.",
+      "Area = 24 x 30 / 144 = 5.00 sf.",
+      "Sill = head height 6'-8\" - nominal height 2'-6\" = 50 in above the floor.",
+      "Fails: area 5.00 sf < 5.7 sf even with no frame loss (1030.2)",
+      "Fails: sill 50 in > 44 in max, 6 in over before any frame (1030.3)",
+      "Open: clear height: best case 30 in vs 24 in minimum (6 in to spare before frame loss)",
+      "Open: clear width: best case 24 in vs 20 in minimum (4 in to spare before frame loss)"
+    ],
+    "assumptions": [
+      "Best case: no frame or sash loss, so the real clear opening is smaller than this.",
+      "Head height is taken as the top of the unit, the usual schedule convention. If it's measured to the clear opening instead, the real sill is higher; any Pass here relies on this convention."
+    ],
+    "reason_code": null,
+    "tag": null,
+    "margin": "sill 6 in too high; area 0.70 sf short",
+    "settles_with": null,
+    "next_step": null,
+    "draft_comment": "Window 10 (BEDROOM 203), the designated emergency escape and rescue opening, does not comply: area 5.00 sf < 5.7 sf even with no frame loss (1030.2); sill 50 in > 44 in max, 6 in over before any frame (1030.3). Provide a compliant opening per IBC 1030.",
+    "room": "BEDROOM 203",
+    "windows": [
+      "10"
+    ],
+    "flags": [],
+    "verdict_source": "rule",
+    "fingerprint": "10|203|24.0x30.0|casement|H"
+  },
+  {
+    "id": "W11",
+    "check": "egress-window",
+    "subject": "Window 11",
+    "verdict": "Not Applicable",
+    "code_ref": "IBC 1030.1",
+    "reason": "Not marked EGRESS, so it isn't the room's escape opening. As an alternative it couldn't serve: fixed unit, does not open, so normal operation gives no clear opening (see the BEDROOM 203 finding).",
+    "evidence": [
+      {
+        "label": "Location",
+        "raw": "BEDROOM 203",
+        "parsed": "BEDROOM (room 203, floor 2): sleeping, name contains 'BEDROOM'",
+        "source": "window schedule, symbol 11, LOCATION"
+      },
+      {
+        "label": "Nominal size",
+        "raw": "3' - 0\" x 2' - 6\"",
+        "parsed": "3'-0\" x 2'-6\" = 7.5 sf",
+        "source": "window schedule, symbol 11, NOMINAL SIZE"
+      },
+      {
+        "label": "Operation",
+        "raw": "FIXED",
+        "parsed": "fixed",
+        "source": "window schedule, symbol 11, TYPE (operation)"
+      },
+      {
+        "label": "Type mark",
+        "raw": "I",
+        "parsed": "I",
+        "source": "window schedule, symbol 11, TYPE (mark)"
+      },
+      {
+        "label": "Head height",
+        "raw": "6' - 8\"",
+        "parsed": "6'-8\"",
+        "source": "window schedule, symbol 11, HEAD HEIGHT"
+      },
+      {
+        "label": "Egress",
+        "raw": "",
+        "parsed": "not designated",
+        "source": "window schedule, symbol 11, EGRESS"
+      }
+    ],
+    "derivation": [],
+    "assumptions": [],
+    "reason_code": null,
+    "tag": null,
+    "margin": null,
+    "settles_with": null,
+    "next_step": null,
+    "draft_comment": null,
+    "room": "BEDROOM 203",
+    "windows": [
+      "11"
+    ],
+    "flags": [],
+    "verdict_source": "rule",
+    "fingerprint": "11|203|36.0x30.0|fixed|I"
+  },
+  {
+    "id": "W12",
+    "check": "egress-window",
+    "subject": "Window 12",
+    "verdict": "Could Not Evaluate",
+    "code_ref": "IBC 1030.2, IBC 1030.2.1, IBC 1030.3",
+    "reason": "At the limit even in the best case: clear height: best case exactly 24 in, so any frame or rail loss fails it (1030.2.1). Also open: area: best case 6.00 sf vs 5.7 sf required, so net clear must be at least 95% of it; clear width: best case 36 in vs 20 in minimum (16 in to spare before frame loss); sill: 32 in, 12 in under the max before the sill frame is added.",
+    "evidence": [
+      {
+        "label": "Location",
+        "raw": "BEDRROM 205",
+        "parsed": "BEDROOM (room 205, floor 2): sleeping, 'BEDRROM' is BEDROOM with an OCR error",
+        "source": "window schedule, symbol 12, LOCATION"
+      },
+      {
+        "label": "Nominal size",
+        "raw": "3' - 0\" x 4' - 0\"",
+        "parsed": "3'-0\" x 4'-0\" = 12 sf",
+        "source": "window schedule, symbol 12, NOMINAL SIZE"
+      },
+      {
+        "label": "Operation",
+        "raw": "S.H.",
+        "parsed": "single hung",
+        "source": "window schedule, symbol 12, TYPE (operation)"
+      },
+      {
+        "label": "Type mark",
+        "raw": "J",
+        "parsed": "J",
+        "source": "window schedule, symbol 12, TYPE (mark)"
+      },
+      {
+        "label": "Head height",
+        "raw": "6' - 8\"",
+        "parsed": "6'-8\"",
+        "source": "window schedule, symbol 12, HEAD HEIGHT"
+      },
+      {
+        "label": "Egress",
+        "raw": "Y",
+        "parsed": "designated EERO",
+        "source": "window schedule, symbol 12, EGRESS"
+      }
+    ],
+    "derivation": [
+      "Best-case clear opening = nominal x operation factor (single hung: width x1, height x0.5) = 36 x 24 in.",
+      "Area = 36 x 24 / 144 = 6.00 sf.",
+      "Sill = head height 6'-8\" - nominal height 4'-0\" = 32 in above the floor.",
+      "At the limit: clear height: best case exactly 24 in, so any frame or rail loss fails it (1030.2.1)",
+      "Open: area: best case 6.00 sf vs 5.7 sf required, so net clear must be at least 95% of it",
+      "Open: clear width: best case 36 in vs 20 in minimum (16 in to spare before frame loss)",
+      "Open: sill: 32 in, 12 in under the max before the sill frame is added"
+    ],
+    "assumptions": [
+      "Best case: no frame or sash loss, so the real clear opening is smaller than this.",
+      "Hung window: only one sash opens; assumed to be half the unit height (equal sashes). A cottage-style unit with a taller bottom sash would open more.",
+      "Head height is taken as the top of the unit, the usual schedule convention. If it's measured to the clear opening instead, the real sill is higher; any Pass here relies on this convention."
+    ],
+    "reason_code": "HUNG_HEIGHT_AT_LIMIT",
+    "tag": "boundary",
+    "margin": "clear height: 0 in to spare; area: needs 95% of nominal as net clear",
+    "settles_with": "manufacturer data or a detail for type J: net clear width/height and the sill-to-clear-opening offset",
+    "next_step": "Provide manufacturer data or a detail for type J: net clear width/height and the sill-to-clear-opening offset.",
+    "draft_comment": "Window 12 (BEDROOM 205): provide manufacturer data for window type J showing the net clear opening width and height and the height of the bottom of the clear opening above the finished floor, to verify IBC 1030.2, 1030.2.1 and 1030.3.",
+    "room": "BEDROOM 205",
+    "windows": [
+      "12"
+    ],
+    "flags": [],
+    "verdict_source": "rule",
+    "fingerprint": "12|205|36.0x48.0|single hung|J"
+  },
+  {
+    "id": "W13",
+    "check": "egress-window",
+    "subject": "Window 13",
+    "verdict": "Fail",
+    "code_ref": "IBC 1030.2.1",
+    "reason": "Fixed window: it doesn't open, so it provides no clear opening under normal operation.",
+    "evidence": [
+      {
+        "label": "Location",
+        "raw": "BEDROOM 205",
+        "parsed": "BEDROOM (room 205, floor 2): sleeping, name contains 'BEDROOM'",
+        "source": "window schedule, symbol 13, LOCATION"
+      },
+      {
+        "label": "Nominal size",
+        "raw": "4' - 0\" x 4' - 0\"",
+        "parsed": "4'-0\" x 4'-0\" = 16 sf",
+        "source": "window schedule, symbol 13, NOMINAL SIZE"
+      },
+      {
+        "label": "Operation",
+        "raw": "FIXED",
+        "parsed": "fixed",
+        "source": "window schedule, symbol 13, TYPE (operation)"
+      },
+      {
+        "label": "Type mark",
+        "raw": "K",
+        "parsed": "K",
+        "source": "window schedule, symbol 13, TYPE (mark)"
+      },
+      {
+        "label": "Head height",
+        "raw": "6' - 8\"",
+        "parsed": "6'-8\"",
+        "source": "window schedule, symbol 13, HEAD HEIGHT"
+      },
+      {
+        "label": "Egress",
+        "raw": "Y",
+        "parsed": "designated EERO",
+        "source": "window schedule, symbol 13, EGRESS"
+      }
+    ],
+    "derivation": [],
+    "assumptions": [],
+    "reason_code": null,
+    "tag": null,
+    "margin": "no operable opening",
+    "settles_with": null,
+    "next_step": null,
+    "draft_comment": "Window 13 (BEDROOM 205), the designated emergency escape and rescue opening, does not comply: fixed unit, does not open, so normal operation gives no clear opening (1030.2.1). Provide a compliant opening per IBC 1030.",
+    "room": "BEDROOM 205",
+    "windows": [
+      "13"
+    ],
+    "flags": [],
+    "verdict_source": "rule",
+    "fingerprint": "13|205|48.0x48.0|fixed|K"
+  },
+  {
+    "id": "W14",
+    "check": "egress-window",
+    "subject": "Window 14",
+    "verdict": "Not Applicable",
+    "code_ref": "IBC 1030.1",
+    "reason": "BATH isn't a sleeping room (not a sleeping-room name), so 1030 doesn't require an EERO here.",
+    "evidence": [
+      {
+        "label": "Location",
+        "raw": "BATH 206",
+        "parsed": "BATH (room 206, floor 2): other, not a sleeping-room name",
+        "source": "window schedule, symbol 14, LOCATION"
+      },
+      {
+        "label": "Nominal size",
+        "raw": "2' - 0\" x 2' - 0\"",
+        "parsed": "2'-0\" x 2'-0\" = 4 sf",
+        "source": "window schedule, symbol 14, NOMINAL SIZE"
+      },
+      {
+        "label": "Operation",
+        "raw": "AWNING",
+        "parsed": "awning",
+        "source": "window schedule, symbol 14, TYPE (operation)"
+      },
+      {
+        "label": "Type mark",
+        "raw": "L",
+        "parsed": "L",
+        "source": "window schedule, symbol 14, TYPE (mark)"
+      },
+      {
+        "label": "Head height",
+        "raw": "7' - 0\"",
+        "parsed": "7'-0\"",
+        "source": "window schedule, symbol 14, HEAD HEIGHT"
+      },
+      {
+        "label": "Egress",
+        "raw": "",
+        "parsed": "not designated",
+        "source": "window schedule, symbol 14, EGRESS"
+      }
+    ],
+    "derivation": [],
+    "assumptions": [],
+    "reason_code": null,
+    "tag": null,
+    "margin": null,
+    "settles_with": null,
+    "next_step": null,
+    "draft_comment": null,
+    "room": "BATH 206",
+    "windows": [
+      "14"
+    ],
+    "flags": [],
+    "verdict_source": "rule",
+    "fingerprint": "14|206|24.0x24.0|awning|L"
+  },
+  {
+    "id": "W20",
+    "check": "egress-window",
+    "subject": "Window 20",
+    "verdict": "Fail",
+    "code_ref": "IBC 1030.3",
+    "reason": "Sill 60 in > 44 in max, 16 in over before any frame (1030.3).",
+    "evidence": [
+      {
+        "label": "Location",
+        "raw": "BEDROOM 301",
+        "parsed": "BEDROOM (room 301, floor 3): sleeping, name contains 'BEDROOM'",
+        "source": "window schedule, symbol 20, LOCATION"
+      },
+      {
+        "label": "Nominal size",
+        "raw": "2' - 6\" x 3' - 0\"",
+        "parsed": "2'-6\" x 3'-0\" = 7.5 sf",
+        "source": "window schedule, symbol 20, NOMINAL SIZE"
+      },
+      {
+        "label": "Operation",
+        "raw": "L.H. CASM'T",
+        "parsed": "casement",
+        "source": "window schedule, symbol 20, TYPE (operation)"
+      },
+      {
+        "label": "Type mark",
+        "raw": "F",
+        "parsed": "F",
+        "source": "window schedule, symbol 20, TYPE (mark)"
+      },
+      {
+        "label": "Head height",
+        "raw": "8' - 0\"",
+        "parsed": "8'-0\"",
+        "source": "window schedule, symbol 20, HEAD HEIGHT"
+      },
+      {
+        "label": "Egress",
+        "raw": "Y",
+        "parsed": "designated EERO",
+        "source": "window schedule, symbol 20, EGRESS"
+      }
+    ],
+    "derivation": [
+      "Best-case clear opening = nominal x operation factor (casement: width x1, height x1) = 30 x 36 in.",
+      "Area = 30 x 36 / 144 = 7.50 sf.",
+      "Sill = head height 8'-0\" - nominal height 3'-0\" = 60 in above the floor.",
+      "Fails: sill 60 in > 44 in max, 16 in over before any frame (1030.3)",
+      "Open: area: best case 7.50 sf vs 5.7 sf required, so net clear must be at least 76% of it",
+      "Open: clear height: best case 36 in vs 24 in minimum (12 in to spare before frame loss)",
+      "Open: clear width: best case 30 in vs 20 in minimum (10 in to spare before frame loss)"
+    ],
+    "assumptions": [
+      "Best case: no frame or sash loss, so the real clear opening is smaller than this.",
+      "Head height is taken as the top of the unit, the usual schedule convention. If it's measured to the clear opening instead, the real sill is higher; any Pass here relies on this convention."
+    ],
+    "reason_code": null,
+    "tag": null,
+    "margin": "sill 16 in too high",
+    "settles_with": null,
+    "next_step": null,
+    "draft_comment": "Window 20 (BEDROOM 301), the designated emergency escape and rescue opening, does not comply: sill 60 in > 44 in max, 16 in over before any frame (1030.3). Provide a compliant opening per IBC 1030.",
+    "room": "BEDROOM 301",
+    "windows": [
+      "20"
+    ],
+    "flags": [],
+    "verdict_source": "rule",
+    "fingerprint": "20|301|30.0x36.0|casement|F"
+  },
+  {
+    "id": "W21",
+    "check": "egress-window",
+    "subject": "Window 21",
+    "verdict": "Not Applicable",
+    "code_ref": "IBC 1030.1",
+    "reason": "Not marked EGRESS, so it isn't the room's escape opening. As an alternative it could comply in the best case (see the GUEST BED 303 finding).",
+    "evidence": [
+      {
+        "label": "Location",
+        "raw": "GUEST BED 303",
+        "parsed": "GUEST BED (room 303, floor 3): sleeping, name contains 'BED'",
+        "source": "window schedule, symbol 21, LOCATION"
+      },
+      {
+        "label": "Nominal size",
+        "raw": "2' - 6\" x 4' - 0\"",
+        "parsed": "2'-6\" x 4'-0\" = 10 sf",
+        "source": "window schedule, symbol 21, NOMINAL SIZE"
+      },
+      {
+        "label": "Operation",
+        "raw": "L.H. CASM'T",
+        "parsed": "casement",
+        "source": "window schedule, symbol 21, TYPE (operation)"
+      },
+      {
+        "label": "Type mark",
+        "raw": "A",
+        "parsed": "A",
+        "source": "window schedule, symbol 21, TYPE (mark)"
+      },
+      {
+        "label": "Head height",
+        "raw": "6' - 8\"",
+        "parsed": "6'-8\"",
+        "source": "window schedule, symbol 21, HEAD HEIGHT"
+      },
+      {
+        "label": "Egress",
+        "raw": "",
+        "parsed": "not designated",
+        "source": "window schedule, symbol 21, EGRESS"
+      }
+    ],
+    "derivation": [],
+    "assumptions": [],
+    "reason_code": null,
+    "tag": null,
+    "margin": null,
+    "settles_with": null,
+    "next_step": null,
+    "draft_comment": null,
+    "room": "GUEST BED 303",
+    "windows": [
+      "21"
+    ],
+    "flags": [],
+    "verdict_source": "rule",
+    "fingerprint": "21|303|30.0x48.0|casement|A"
+  },
+  {
+    "id": "W22",
+    "check": "egress-window",
+    "subject": "Window 22",
+    "verdict": "Not Applicable",
+    "code_ref": "IBC 1030.1",
+    "reason": "HALL isn't a sleeping room (not a sleeping-room name), so 1030 doesn't require an EERO here.",
+    "evidence": [
+      {
+        "label": "Location",
+        "raw": "HALL 302",
+        "parsed": "HALL (room 302, floor 3): other, not a sleeping-room name",
+        "source": "window schedule, symbol 22, LOCATION"
+      },
+      {
+        "label": "Nominal size",
+        "raw": "2' - 0\" x 6' - 0\"",
+        "parsed": "2'-0\" x 6'-0\" = 12 sf",
+        "source": "window schedule, symbol 22, NOMINAL SIZE"
+      },
+      {
+        "label": "Operation",
+        "raw": "FIXED",
+        "parsed": "fixed",
+        "source": "window schedule, symbol 22, TYPE (operation)"
+      },
+      {
+        "label": "Type mark",
+        "raw": "M",
+        "parsed": "M",
+        "source": "window schedule, symbol 22, TYPE (mark)"
+      },
+      {
+        "label": "Head height",
+        "raw": "7' - 0\"",
+        "parsed": "7'-0\"",
+        "source": "window schedule, symbol 22, HEAD HEIGHT"
+      },
+      {
+        "label": "Egress",
+        "raw": "",
+        "parsed": "not designated",
+        "source": "window schedule, symbol 22, EGRESS"
+      }
+    ],
+    "derivation": [],
+    "assumptions": [],
+    "reason_code": null,
+    "tag": null,
+    "margin": null,
+    "settles_with": null,
+    "next_step": null,
+    "draft_comment": null,
+    "room": "HALL 302",
+    "windows": [
+      "22"
+    ],
+    "flags": [],
+    "verdict_source": "rule",
+    "fingerprint": "22|302|24.0x72.0|fixed|M"
+  },
+  {
+    "id": "W23",
+    "check": "egress-window",
+    "subject": "Window 23",
+    "verdict": "Not Applicable",
+    "code_ref": "IBC 1030.1",
+    "reason": "STAIR S1 isn't a sleeping room (not a sleeping-room name), so 1030 doesn't require an EERO here.",
+    "evidence": [
+      {
+        "label": "Location",
+        "raw": "STAIR S1",
+        "parsed": "STAIR S1 (room None, floor ?): other, not a sleeping-room name",
+        "source": "window schedule, symbol 23, LOCATION"
+      },
+      {
+        "label": "Nominal size",
+        "raw": "2' - 0\" x 6' - 0\"",
+        "parsed": "2'-0\" x 6'-0\" = 12 sf",
+        "source": "window schedule, symbol 23, NOMINAL SIZE"
+      },
+      {
+        "label": "Operation",
+        "raw": "FIXED",
+        "parsed": "fixed",
+        "source": "window schedule, symbol 23, TYPE (operation)"
+      },
+      {
+        "label": "Type mark",
+        "raw": "M",
+        "parsed": "M",
+        "source": "window schedule, symbol 23, TYPE (mark)"
+      },
+      {
+        "label": "Head height",
+        "raw": "9' - 0\"",
+        "parsed": "9'-0\"",
+        "source": "window schedule, symbol 23, HEAD HEIGHT"
+      },
+      {
+        "label": "Egress",
+        "raw": "",
+        "parsed": "not designated",
+        "source": "window schedule, symbol 23, EGRESS"
+      }
+    ],
+    "derivation": [],
+    "assumptions": [],
+    "reason_code": null,
+    "tag": null,
+    "margin": null,
+    "settles_with": null,
+    "next_step": null,
+    "draft_comment": null,
+    "room": "STAIR S1",
+    "windows": [
+      "23"
+    ],
+    "flags": [],
+    "verdict_source": "rule",
+    "fingerprint": "23|STAIR S1|24.0x72.0|fixed|M"
+  }
+]

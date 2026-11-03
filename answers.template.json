@@ -1,0 +1,53 @@
+{
+  "facts": {
+    "types": {
+      "A": {
+        "net_clear_width_in": null,
+        "net_clear_height_in": null,
+        "sill_to_clear_opening_in": null,
+        "source": "",
+        "by": "",
+        "_for": [
+          "Window 1",
+          "Window 3"
+        ]
+      },
+      "F": {
+        "net_clear_width_in": null,
+        "net_clear_height_in": null,
+        "sill_to_clear_opening_in": null,
+        "source": "",
+        "by": "",
+        "_for": [
+          "Window 7"
+        ]
+      },
+      "J": {
+        "net_clear_width_in": null,
+        "net_clear_height_in": null,
+        "sill_to_clear_opening_in": null,
+        "source": "",
+        "by": "",
+        "_for": [
+          "Window 12"
+        ]
+      }
+    }
+  },
+  "decisions": {
+    "R102": {
+      "verdict": null,
+      "why": "",
+      "by": "",
+      "fingerprint": "room|102|4|102|36.0x60.0|casement|C",
+      "_question": "Decide whether OFFICE 102 is a sleeping room."
+    },
+    "R303": {
+      "verdict": null,
+      "why": "",
+      "by": "",
+      "fingerprint": "room|303|21|303|30.0x48.0|casement|A",
+      "_question": "Ask the architect to designate an escape window (window 21 is a candidate) and give its net clear opening. If none is designated, the room doesn't meet 1030.1."
+    }
+  }
+}

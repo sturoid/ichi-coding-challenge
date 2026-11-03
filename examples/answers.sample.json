@@ -1,0 +1,34 @@
+{
+  "_about": "Example reviewer answers, to show how Could Not Evaluate findings get resolved. The numbers are invented for the demo, not real manufacturer data. Run: python -m ichi instructions/fixtures/project/code-analysis.html instructions/fixtures/project/window-schedule.html -o examples/REPORT.with-answers.md --answers examples/answers.sample.json",
+  "facts": {
+    "types": {
+      "A": {
+        "net_clear_width_in": 24.5,
+        "net_clear_height_in": 41,
+        "sill_to_clear_opening_in": 1.5,
+        "source": "EXAMPLE ONLY: manufacturer cut sheet for type A casement",
+        "by": "J. Reviewer"
+      }
+    }
+  },
+  "decisions": {
+    "R303": {
+      "verdict": "Fail",
+      "why": "No EERO designated for a sleeping room; the code analysis claims one at every sleeping room",
+      "by": "J. Reviewer",
+      "fingerprint": "room|303|21|303|30.0x48.0|casement|A"
+    },
+    "W10": {
+      "verdict": "Pass",
+      "why": "EXAMPLE OF A DISPUTE: a reviewer answer that contradicts a rule verdict is flagged, not applied",
+      "by": "J. Reviewer",
+      "fingerprint": "10|203|24.0x30.0|casement|H"
+    },
+    "R102": {
+      "verdict": "Not Applicable",
+      "why": "EXAMPLE OF A STALE ANSWER: made against an earlier version of the row (window 4 was 3'-0\" x 4'-0\")",
+      "by": "J. Reviewer",
+      "fingerprint": "room|102|4|102|36.0x48.0|casement|C"
+    }
+  }
+}

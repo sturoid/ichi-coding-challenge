@@ -1,0 +1,31 @@
+{
+  "_about": "Hand-derived verdicts for the README fixtures (PLAN.md §2), written before the tool existed. Opus, Fable and Sonnet derived them independently during planning.",
+  "fixture": "instructions/fixtures/project",
+  "findings": {
+    "H1": "Fail",
+    "W1": "Could Not Evaluate",
+    "W2": "Not Applicable",
+    "W3": "Could Not Evaluate",
+    "W4": "Not Applicable",
+    "W5": "Not Applicable",
+    "W6": "Not Applicable",
+    "W7": "Could Not Evaluate",
+    "W8": "Not Applicable",
+    "W10": "Fail",
+    "W11": "Not Applicable",
+    "W12": "Could Not Evaluate",
+    "W13": "Fail",
+    "W14": "Not Applicable",
+    "W20": "Fail",
+    "W21": "Not Applicable",
+    "W22": "Not Applicable",
+    "W23": "Not Applicable",
+    "R101": "Could Not Evaluate",
+    "R102": "Could Not Evaluate",
+    "R107": "Could Not Evaluate",
+    "R203": "Fail",
+    "R205": "Could Not Evaluate",
+    "R301": "Fail",
+    "R303": "Could Not Evaluate"
+  }
+}
