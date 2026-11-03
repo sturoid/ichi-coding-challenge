@@ -86,6 +86,8 @@ The schedule never gives the net clear opening, so **no window can Pass from the
 
 ### Reason codes and the reviewer's answers
 
+*Build: the answers loop below was built, then removed before submission as out of scope. It survives as one "another day" line in NOTES.md.*
+
 Every CNE has a reason code and a one-line **Next step**. The four verdict words are never renamed.
 
 | Code | Example | Needed |

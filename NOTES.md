@@ -8,7 +8,7 @@ Python 3.12, standard library only. No install, no API keys.
 python -m ichi instructions/fixtures/project/code-analysis.html instructions/fixtures/project/window-schedule.html -o REPORT.md
 ```
 
-This writes `REPORT.md`, `findings.json` (every finding with its evidence) and `answers.template.json` (a blank for each open question). Tests: `python -m unittest discover -s tests`. Scoring: `python eval/score.py`.
+This writes `REPORT.md`, `findings.json` (every finding with its evidence) . Tests: `python -m unittest discover -s tests`. Scoring: `python eval/score.py`.
 
 ## How it works
 
@@ -39,7 +39,7 @@ Claude (Opus) built it, and two other models reviewed it independently: Fable wr
 - **Plan reviews** caught a dropped footnote rule (`R<sup>h</sup>` → `Rh`, missing row R) and a borderline area I'd missed on W12.
 - **Sonnet read the report as a plan checker** and found a draft comment repeating the OCR typo, a wrong code section on the fixed window, and the grade-plane elevation going unused.
 
-I also checked every verdict by hand against the drawing images. `eval/score.py` gives 25/25 on the README fixtures and 26/26 on the second project, and all 135 tests pass.
+I also checked every verdict by hand against the drawing images. `eval/score.py` gives 25/25 on the README fixtures and 26/26 on the second project, and all 115 tests pass.
 
 ## What I couldn't verify
 
@@ -55,8 +55,8 @@ I also checked every verdict by hand against the drawing images. `eval/score.py`
 
 ## Another day
 
-- A review UI where the checker supplies facts (e.g. net clear for a window type) and the rules re-run. A JSON prototype is in `extras/`.
+- Let the checker supply facts, such as the net clear opening for a window type, and re-run the rules. Facts, not verdicts, so the tested rules still decide.
 - Cross-check OCR text against the drawing image.
 - **At 200 sheets and 40 checks**, the structure here holds: extraction that records its source, each code section as a small tested rule, and Could Not Evaluate as the default. The hard part becomes finding the right table on the right sheet and linking facts across sheets (a floor-plan door settling Exception 2). That's where a model earns its cost, for retrieval and labelling checked by rules, not for verdicts.
 
-`extras/` has the plan and decision log, and an example of reviewer answers resolving open findings.
+`extras/PLAN.md` has the plan and the decision log behind it.

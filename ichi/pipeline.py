@@ -24,8 +24,7 @@ class Result:
         return {f.id: f for f in self.findings}
 
 
-def run(code_analysis_html: str, schedule_html: str, table_html: str | None = None,
-        answers: dict | None = None) -> Result:
+def run(code_analysis_html: str, schedule_html: str, table_html: str | None = None) -> Result:
     if table_html is None:
         table_html = (DEFAULT_CODE_DIR / "table-504.3.html").read_text(encoding="utf-8")
     notes = RunNotes()
@@ -35,8 +34,7 @@ def run(code_analysis_html: str, schedule_html: str, table_html: str | None = No
     rows, cols = map_window_schedule(schedule_html, notes)
     numbering = parse_room_numbering(ca.get("room_numbering", ("", ""))[1])
     windows = build_windows(rows, "egress" in cols, numbering, notes)
-    facts = (answers or {}).get("facts", {}).get("types", {})
-    win, rooms = check_windows(windows, ca, facts, notes)
+    win, rooms = check_windows(windows, ca, notes)
 
     gaps = missing_symbols(windows)
     if gaps:
@@ -45,13 +43,10 @@ def run(code_analysis_html: str, schedule_html: str, table_html: str | None = No
         if key not in cols:
             notes.observations.append(f"No {key.upper()} column was found; findings that need it are Could Not Evaluate.")
     findings = [height] + rooms + win
-    if answers:
-        from .answers import apply_decisions
-        apply_decisions(findings, answers, notes)
     return Result(findings, notes, ca, {"windows": windows})
 
 
-def run_files(code_analysis: Path, schedule: Path, code_dir: Path | None = None, answers: dict | None = None) -> Result:
+def run_files(code_analysis: Path, schedule: Path, code_dir: Path | None = None) -> Result:
     code_dir = code_dir or DEFAULT_CODE_DIR
     return run(Path(code_analysis).read_text(encoding="utf-8"), Path(schedule).read_text(encoding="utf-8"),
-               (Path(code_dir) / "table-504.3.html").read_text(encoding="utf-8"), answers)
+               (Path(code_dir) / "table-504.3.html").read_text(encoding="utf-8"))

@@ -3,7 +3,7 @@
 Verdict principle (extras/PLAN.md §2):
 - Fail only if the window fails even in the best case: no frame or sash loss, the
   most generous reading of the head height.
-- Pass only if it passes with real clear-opening numbers (supplied facts or a
+- Pass only if it passes with real clear-opening numbers (a
   net-clear column). Nominal sizes are never treated as the clear opening.
 - Everything else is Could Not Evaluate, with the margin in inches or square feet.
   A margin of exactly zero is tagged "boundary": any frame at all makes it fail.
@@ -50,10 +50,6 @@ class Window:
     net_w: float | None = None       # net clear opening, when the schedule gives it
     net_h: float | None = None
     evidence: list[Evidence] = field(default_factory=list)
-
-    @property
-    def fingerprint(self) -> str:
-        return f"{self.symbol}|{self.room_key}|{self.width}x{self.height}|{self.operation}|{self.mark}"
 
     @property
     def label(self) -> str:
@@ -142,8 +138,8 @@ def floor_above_grade(ca: dict) -> float | None:
     return (float(els[1]) - float(els[0])) * 12 if len(els) >= 2 else None
 
 
-def assess(w: Window, fact: dict | None = None, ff_above_grade: float | None = None) -> Assessment:
-    """Best-case bounds for one window. `fact` is a reviewer-supplied net-clear fact for its type.
+def assess(w: Window, ff_above_grade: float | None = None) -> Assessment:
+    """Best-case bounds for one window, or exact checks when the schedule gives net clear sizes.
     `ff_above_grade` (inches) only changes wording: the grade plane is an average, so it can't rule
     out a grade-floor opening, and verdicts keep the 5.0 sf Fail threshold on floor 1."""
     if w.operation != "fixed" and (w.operation is None or w.width is None or w.height is None) \
@@ -170,14 +166,11 @@ def assess(w: Window, fact: dict | None = None, ff_above_grade: float | None = N
                           settles_with="the window size on the schedule")
 
     fw, fh = FACTORS[w.operation]
-    if w.net_w and w.net_h:
-        fact = {**(fact or {}), "net_clear_width_in": w.net_w, "net_clear_height_in": w.net_h,
-                "source": "net clear columns on the window schedule"}
-    exact = bool(fact and fact.get("net_clear_width_in") and fact.get("net_clear_height_in"))
+    exact = bool(w.net_w and w.net_h)
     a = Assessment(CNE, "", f"{REF_AREA}, {REF_DIMS}, {REF_SILL}")
     if exact:
-        cw, ch = float(fact["net_clear_width_in"]), float(fact["net_clear_height_in"])
-        a.derivation.append(f"Net clear {cw:g} x {ch:g} in from supplied fact ({fact.get('source', 'source not given')}).")
+        cw, ch = w.net_w, w.net_h
+        a.derivation.append(f"Net clear {cw:g} x {ch:g} in from the net clear columns on the window schedule.")
     else:
         cw, ch = w.width * fw, w.height * fh
         a.derivation.append(f"Best-case clear opening = nominal x operation factor ({w.operation}: width x{fw:g}, height x{fh:g}) "
@@ -205,9 +198,7 @@ def assess(w: Window, fact: dict | None = None, ff_above_grade: float | None = N
     a.derivation.append(f"Area = {cw:g} x {ch:g} / 144 = {area:.2f} sf.")
 
     sill_bottom, sill_worst = w.sill, None
-    if sill_bottom is not None and fact and fact.get("sill_to_clear_opening_in") is not None:
-        sill_bottom = sill_worst = sill_bottom + float(fact["sill_to_clear_opening_in"])
-    elif sill_bottom is not None and exact:
+    if sill_bottom is not None and exact:
         hung = w.operation in ("single hung", "double hung")
         loss = max(0.0, w.height - 2 * ch) if hung else max(0.0, w.height - ch)
         sill_worst = sill_bottom + loss
@@ -299,7 +290,7 @@ def assess(w: Window, fact: dict | None = None, ff_above_grade: float | None = N
     return a
 
 
-def check_windows(windows: list[Window], ca: dict, facts: dict[str, dict], notes: RunNotes) -> tuple[list[Finding], list[Finding]]:
+def check_windows(windows: list[Window], ca: dict, notes: RunNotes) -> tuple[list[Finding], list[Finding]]:
     occ = ca.get("occupancy", ("", ""))[1].strip().upper()
     if occ.startswith(("R-3", "R-4")):
         applies, app_why = True, f"Group {occ}: 1030.1 item 2 requires EEROs in sleeping rooms below the fourth story."
@@ -314,10 +305,9 @@ def check_windows(windows: list[Window], ca: dict, facts: dict[str, dict], notes
     for w in windows:
         f = Finding(f"W{w.symbol}", "egress-window", w.label, NA, "IBC 1030.1", "", evidence=list(w.evidence),
                     room=w.room_name + (f" {w.room_key}" if w.room_key != w.room_name else ""),
-                    windows=[w.symbol], fingerprint=w.fingerprint)
+                    windows=[w.symbol])
         win_findings.append(f)
-        fact = facts.get(w.mark)
-        a = assess(w, fact, ff) if w.room_class in ("sleeping", "ambiguous") else None
+        a = assess(w, ff) if w.room_class in ("sleeping", "ambiguous") else None
         results[w.symbol] = (w, a)
         if applies is False:
             f.reason = app_why
@@ -348,8 +338,6 @@ def check_windows(windows: list[Window], ca: dict, facts: dict[str, dict], notes
         f.derivation, f.assumptions = a.derivation, a.assumptions
         if w.net_w and w.net_h and w.operation != "fixed":
             f.verdict_source = "rule + schedule net clear data"
-        elif fact and fact.get("net_clear_width_in") and w.operation != "fixed":
-            f.verdict_source = "rule + supplied fact"
         if w.floor == 1:
             f.assumptions.append("First floor: may be a grade-floor opening (5.0 sf). Finished grade at each window isn't given, "
                                  "so Pass needs 5.7 sf; a Fail on area is only called below 5.0 sf.")
@@ -382,7 +370,7 @@ def _rooms(windows, results, win_findings, ca, applies, app_why, notes) -> list[
         name = next(w.room_name for w in ws if w.room_class == cls)
         label = f"{name} {key}" if key != name else name
         f = Finding("R" + re.sub(r"\W+", "-", key).strip("-"), "egress-room", f"Room {key}" if key != name else name, CNE, "IBC 1030.1", "",
-                    room=label, windows=[w.symbol for w in ws], fingerprint="room|" + key + "|" + ",".join(sorted(w.fingerprint for w in ws)))
+                    room=label, windows=[w.symbol for w in ws])
         out.append(f)
         f.evidence = [Evidence("Windows in room", ", ".join(f"{w.symbol} ({w.op_raw}, {'EGRESS' if w.designated else 'not designated'})" for w in ws),
                                label, "window schedule, LOCATION")]

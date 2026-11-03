@@ -136,7 +136,7 @@ def render(res: Result, inputs: dict[str, tuple[str, str]], table_html: str) -> 
     w("## 3. Open questions")
     w("")
     w("Could Not Evaluate items that aren't at a limit. Each needs a fact from the architect or a call from you; "
-      "`answers.template.json` has a blank for each one.")
+      "the draft information requests below ask the architect for what's missing.")
     w("")
     if open_cne:
         w("| Item | Why it's open | What settles it |")

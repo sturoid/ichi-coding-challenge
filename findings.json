@@ -65,8 +65,7 @@
     "flags": [
       "The code analysis says the allowable height is 60' - 0\" per Table 504.3, but the table gives 40 ft for this building (row 'R' / sub-row S13D / column Type V-B). 60 ft is the S and S13R value in the same column, not S13D."
     ],
-    "verdict_source": "rule",
-    "fingerprint": null
+    "verdict_source": "rule"
   },
   {
     "id": "R101",
@@ -101,8 +100,7 @@
       "3"
     ],
     "flags": [],
-    "verdict_source": "rule",
-    "fingerprint": "room|101|1|101|30.0x48.0|casement|A,2|101|36.0x48.0|fixed|B,3|101|30.0x48.0|casement|A"
+    "verdict_source": "rule"
   },
   {
     "id": "R102",
@@ -132,8 +130,7 @@
       "4"
     ],
     "flags": [],
-    "verdict_source": "rule",
-    "fingerprint": "room|102|4|102|36.0x60.0|casement|C"
+    "verdict_source": "rule"
   },
   {
     "id": "R107",
@@ -167,8 +164,7 @@
     "flags": [
       "Exception 2 to 1030.1: no EERO is needed if the room has an exit door opening directly to a public way, yard or court. Not visible in these documents; verify on the floor plan before issuing."
     ],
-    "verdict_source": "rule",
-    "fingerprint": "room|107|7|107|30.0x36.0|casement|F"
+    "verdict_source": "rule"
   },
   {
     "id": "R203",
@@ -203,8 +199,7 @@
     "flags": [
       "Exception 2 to 1030.1: no EERO is needed if the room has an exit door opening directly to a public way, yard or court. Not visible in these documents; verify on the floor plan before issuing."
     ],
-    "verdict_source": "rule",
-    "fingerprint": "room|203|10|203|24.0x30.0|casement|H,11|203|36.0x30.0|fixed|I"
+    "verdict_source": "rule"
   },
   {
     "id": "R205",
@@ -240,8 +235,7 @@
     "flags": [
       "Exception 2 to 1030.1: no EERO is needed if the room has an exit door opening directly to a public way, yard or court. Not visible in these documents; verify on the floor plan before issuing."
     ],
-    "verdict_source": "rule",
-    "fingerprint": "room|205|12|205|36.0x48.0|single hung|J,13|205|48.0x48.0|fixed|K"
+    "verdict_source": "rule"
   },
   {
     "id": "R301",
@@ -275,8 +269,7 @@
     "flags": [
       "Exception 2 to 1030.1: no EERO is needed if the room has an exit door opening directly to a public way, yard or court. Not visible in these documents; verify on the floor plan before issuing."
     ],
-    "verdict_source": "rule",
-    "fingerprint": "room|301|20|301|30.0x36.0|casement|F"
+    "verdict_source": "rule"
   },
   {
     "id": "R303",
@@ -306,8 +299,7 @@
       "21"
     ],
     "flags": [],
-    "verdict_source": "rule",
-    "fingerprint": "room|303|21|303|30.0x48.0|casement|A"
+    "verdict_source": "rule"
   },
   {
     "id": "W1",
@@ -380,8 +372,7 @@
       "1"
     ],
     "flags": [],
-    "verdict_source": "rule",
-    "fingerprint": "1|101|30.0x48.0|casement|A"
+    "verdict_source": "rule"
   },
   {
     "id": "W2",
@@ -441,8 +432,7 @@
       "2"
     ],
     "flags": [],
-    "verdict_source": "rule",
-    "fingerprint": "2|101|36.0x48.0|fixed|B"
+    "verdict_source": "rule"
   },
   {
     "id": "W3",
@@ -515,8 +505,7 @@
       "3"
     ],
     "flags": [],
-    "verdict_source": "rule",
-    "fingerprint": "3|101|30.0x48.0|casement|A"
+    "verdict_source": "rule"
   },
   {
     "id": "W4",
@@ -576,8 +565,7 @@
       "4"
     ],
     "flags": [],
-    "verdict_source": "rule",
-    "fingerprint": "4|102|36.0x60.0|casement|C"
+    "verdict_source": "rule"
   },
   {
     "id": "W5",
@@ -637,8 +625,7 @@
       "5"
     ],
     "flags": [],
-    "verdict_source": "rule",
-    "fingerprint": "5|103|72.0x60.0|fixed|D"
+    "verdict_source": "rule"
   },
   {
     "id": "W6",
@@ -698,8 +685,7 @@
       "6"
     ],
     "flags": [],
-    "verdict_source": "rule",
-    "fingerprint": "6|104|36.0x36.0|awning|E"
+    "verdict_source": "rule"
   },
   {
     "id": "W7",
@@ -772,8 +758,7 @@
       "7"
     ],
     "flags": [],
-    "verdict_source": "rule",
-    "fingerprint": "7|107|30.0x36.0|casement|F"
+    "verdict_source": "rule"
   },
   {
     "id": "W8",
@@ -833,8 +818,7 @@
       "8"
     ],
     "flags": [],
-    "verdict_source": "rule",
-    "fingerprint": "8|108|24.0x36.0|slider|G"
+    "verdict_source": "rule"
   },
   {
     "id": "W10",
@@ -905,8 +889,7 @@
       "10"
     ],
     "flags": [],
-    "verdict_source": "rule",
-    "fingerprint": "10|203|24.0x30.0|casement|H"
+    "verdict_source": "rule"
   },
   {
     "id": "W11",
@@ -966,8 +949,7 @@
       "11"
     ],
     "flags": [],
-    "verdict_source": "rule",
-    "fingerprint": "11|203|36.0x30.0|fixed|I"
+    "verdict_source": "rule"
   },
   {
     "id": "W12",
@@ -1039,8 +1021,7 @@
       "12"
     ],
     "flags": [],
-    "verdict_source": "rule",
-    "fingerprint": "12|205|36.0x48.0|single hung|J"
+    "verdict_source": "rule"
   },
   {
     "id": "W13",
@@ -1100,8 +1081,7 @@
       "13"
     ],
     "flags": [],
-    "verdict_source": "rule",
-    "fingerprint": "13|205|48.0x48.0|fixed|K"
+    "verdict_source": "rule"
   },
   {
     "id": "W14",
@@ -1161,8 +1141,7 @@
       "14"
     ],
     "flags": [],
-    "verdict_source": "rule",
-    "fingerprint": "14|206|24.0x24.0|awning|L"
+    "verdict_source": "rule"
   },
   {
     "id": "W20",
@@ -1233,8 +1212,7 @@
       "20"
     ],
     "flags": [],
-    "verdict_source": "rule",
-    "fingerprint": "20|301|30.0x36.0|casement|F"
+    "verdict_source": "rule"
   },
   {
     "id": "W21",
@@ -1294,8 +1272,7 @@
       "21"
     ],
     "flags": [],
-    "verdict_source": "rule",
-    "fingerprint": "21|303|30.0x48.0|casement|A"
+    "verdict_source": "rule"
   },
   {
     "id": "W22",
@@ -1355,8 +1332,7 @@
       "22"
     ],
     "flags": [],
-    "verdict_source": "rule",
-    "fingerprint": "22|302|24.0x72.0|fixed|M"
+    "verdict_source": "rule"
   },
   {
     "id": "W23",
@@ -1416,7 +1392,6 @@
       "23"
     ],
     "flags": [],
-    "verdict_source": "rule",
-    "fingerprint": "23|STAIR S1|24.0x72.0|fixed|M"
+    "verdict_source": "rule"
   }
 ]

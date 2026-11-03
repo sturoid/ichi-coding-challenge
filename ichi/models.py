@@ -48,8 +48,7 @@ class Finding:
     room: str | None = None
     windows: list[str] = field(default_factory=list)
     flags: list[str] = field(default_factory=list)
-    verdict_source: str = "rule"    # "rule" | "rule + supplied fact" | "checker decision"
-    fingerprint: str | None = None
+    verdict_source: str = "rule"    # "rule" | "rule + schedule net clear data"
 
     def __post_init__(self):
         assert self.verdict in VERDICTS, self.verdict

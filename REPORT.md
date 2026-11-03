@@ -51,7 +51,7 @@
 
 ## 3. Open questions
 
-Could Not Evaluate items that aren't at a limit. Each needs a fact from the architect or a call from you; `answers.template.json` has a blank for each one.
+Could Not Evaluate items that aren't at a limit. Each needs a fact from the architect or a call from you; the draft information requests below ask the architect for what's missing.
 
 | Item | Why it's open | What settles it |
 |---|---|---|
