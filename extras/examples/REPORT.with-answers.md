@@ -3,7 +3,7 @@
 **Project:** NEW 3-STORY SINGLE-FAMILY DWELLING WITH ATTACHED ACCESSORY DWELLING UNIT (ADU). SLEEPING ROOMS ON ALL FLOORS  
 **Code:** 2018 INTERNATIONAL BUILDING CODE (IBC) AS ADOPTED BY THE CITY OF MERIDIAN FALLS  
 **Checks:** building height (IBC 2018 Table 504.3) and emergency escape and rescue openings (EEROs) in sleeping rooms (IBC 2018 Section 1030)  
-**Inputs:** `instructions/fixtures/project/code-analysis.html` (sha256 a0dc18fc9c36); `instructions/fixtures/project/window-schedule.html` (sha256 85de501d0b3c); `instructions/fixtures/code/table-504.3.html` (sha256 2c08579613a6); `examples/answers.sample.json` (sha256 fbdc362a023a)
+**Inputs:** `instructions/fixtures/project/code-analysis.html` (sha256 a0dc18fc9c36); `instructions/fixtures/project/window-schedule.html` (sha256 85de501d0b3c); `instructions/fixtures/code/table-504.3.html` (sha256 2c08579613a6); `extras/examples/answers.sample.json` (sha256 a2913f708f3c)
 
 | | Pass | Fail | Could Not Evaluate | Not Applicable |
 |---|---|---|---|---|

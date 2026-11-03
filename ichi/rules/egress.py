@@ -1,6 +1,6 @@
 """Check 2: bedroom emergency escape and rescue openings (EERO), IBC 2018 Section 1030.
 
-Verdict principle (PLAN.md §2):
+Verdict principle (extras/PLAN.md §2):
 - Fail only if the window fails even in the best case: no frame or sash loss, the
   most generous reading of the head height.
 - Pass only if it passes with real clear-opening numbers (supplied facts or a

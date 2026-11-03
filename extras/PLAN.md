@@ -108,7 +108,7 @@ Every CNE has a reason code and a one-line **Next step**. The four verdict words
 - An answer that contradicts a rule verdict → **Disputed**.
 - A changed window row (symbol + room + size + type) → **stale**, and the finding reverts to CNE.
 
-The tool generates `answers.template.json`, and `examples/answers.sample.json` (type A net clear) shows W1, W3 and Room 101 resolving. The submitted `REPORT.md` uses no answers.
+The tool generates `answers.template.json`, and `extras/examples/answers.sample.json` (type A net clear) shows W1, W3 and Room 101 resolving. The submitted `REPORT.md` uses no answers.
 
 ## 3. Architecture
 

@@ -1,7 +1,7 @@
 """Shared test helpers: fixture paths and minimal HTML builders.
 
 Expected values in the tests are derived from the code text (instructions/fixtures/code),
-the README worked examples and PLAN.md section 2, never from the rule implementations.
+the README worked examples and extras/PLAN.md section 2, never from the rule implementations.
 """
 from __future__ import annotations
 

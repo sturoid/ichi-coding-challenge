@@ -1,5 +1,5 @@
 {
-  "_about": "Example reviewer answers, to show how Could Not Evaluate findings get resolved. The numbers are invented for the demo, not real manufacturer data. Run: python -m ichi instructions/fixtures/project/code-analysis.html instructions/fixtures/project/window-schedule.html -o examples/REPORT.with-answers.md --answers examples/answers.sample.json",
+  "_about": "Example reviewer answers, to show how Could Not Evaluate findings get resolved. The numbers are invented for the demo, not real manufacturer data. Run: python -m ichi instructions/fixtures/project/code-analysis.html instructions/fixtures/project/window-schedule.html -o extras/examples/REPORT.with-answers.md --answers extras/examples/answers.sample.json",
   "facts": {
     "types": {
       "A": {

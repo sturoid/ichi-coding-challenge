@@ -1,5 +1,5 @@
 {
-  "_about": "Hand-derived verdicts for the README fixtures (PLAN.md §2), written before the tool existed. Opus, Fable and Sonnet derived them independently during planning.",
+  "_about": "Hand-derived verdicts for the README fixtures (extras/PLAN.md §2), written before the tool existed. Opus, Fable and Sonnet derived them independently during planning.",
   "fixture": "instructions/fixtures/project",
   "findings": {
     "H1": "Fail",
